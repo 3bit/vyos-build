@@ -36,4 +36,14 @@ system {
 interfaces {
     loopback lo {
     }
+
+    ethernet eth0 {
+        address dhcp
+    }
+}
+
+service {
+    ssh {
+        listen-address 0.0.0.0
+    }
 }
