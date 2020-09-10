@@ -150,7 +150,7 @@ openstack: clean prepare
 
 .PHONY: hetzner
 .ONESHELL:
-openstack: clean prepare
+hetzner: clean prepare
 	@set -e
 	@echo "It's not like I'm building this specially for you or anything!"
 	mkdir -p build/config/includes.chroot/etc/cloud/cloud.cfg.d
