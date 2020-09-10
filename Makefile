@@ -148,6 +148,20 @@ openstack: clean prepare
 	cd ..
 	@scripts/copy-image
 
+.PHONY: hetzner
+.ONESHELL:
+openstack: clean prepare
+	@set -e
+	@echo "It's not like I'm building this specially for you or anything!"
+	mkdir -p build/config/includes.chroot/etc/cloud/cloud.cfg.d
+	cp tools/cloud-init/hetzner/90_dpkg.cfg build/config/includes.chroot/etc/cloud/cloud.cfg.d/
+	cp tools/cloud-init/cloud-init.list.chroot build/config/package-lists/
+	cp -f tools/cloud-init/hetzner/config.boot.default build/config/includes.chroot/opt/vyatta/etc/
+	cd $(build_dir)
+	lb build 2>&1 | tee build.log
+	cd ..
+	@scripts/copy-image
+
 .PHONY: oracle
 .ONESHELL:
 oracle: clean prepare
